@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private NewsAdapter mNewsCustomAdapter;
 
     /**
-     * Constant value for the Book loader ID. We can choose any integer.
+     * Constant value for the News loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int NEWS_LOADER_ID = 1;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ButterKnife.bind(MainActivity.this);
 
         // Instance required to create onItemClick Listener
+        // newsList is empty (place holder) and will be replaced at the end of onFinishLoader method
         final List<News> newsList = new ArrayList<News>();
 
         // Create a new {@link newsCustomAdapter} of news
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 Uri webpageUri = Uri.parse(urlString);
                 //Implicit Intent
                 Intent goWebsite = new Intent(Intent.ACTION_VIEW, webpageUri);
+
+                //  check if there is an activity able to launch your intent before you try to launch it
                 if (goWebsite.resolveActivity(getPackageManager()) != null) {
                     startActivity(goWebsite);
                 }
@@ -152,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+    // method to send Long-time consuming Network Request from Main Thread to background thread
+    // LoaderManager in charge og calling this method
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
 
         String finalUrlRequest = uriConstructor(GUARDIAN_REQUEST_URL);
@@ -162,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return instanceNews;
     }
 
+    // when onCreateLoader return the Loader<List<News>>, results are sent to onLoadFinish method
+    // to display result on UI
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
 
         swipeRefreshLayout.setRefreshing(false);
@@ -169,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mNewsCustomAdapter.clear();
 
         if (!data.isEmpty()) {
+            // add the List at the last position of mNewsCustomAdapter constructor
             mNewsCustomAdapter.addAll(data);
         } else {
             noNews.setText(R.string.no_news);

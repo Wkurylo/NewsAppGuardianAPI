@@ -22,6 +22,8 @@ public final class NewsAdapter extends ArrayAdapter<News> {
         super(context, 0, listToDisplay);
     }
 
+    // viewHolder pattern to improve scrolling performances.
+
     static class ViewHolder {
         @BindView(R.id.title_name)
         TextView titleView;
@@ -39,6 +41,7 @@ public final class NewsAdapter extends ArrayAdapter<News> {
 
         ViewHolder holder;
 
+        //  check if this view has been recycled by the Android framework, to improve performances.
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_news, parent, false);
 

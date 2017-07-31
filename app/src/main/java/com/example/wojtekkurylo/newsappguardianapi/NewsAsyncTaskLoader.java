@@ -67,6 +67,7 @@ public class NewsAsyncTaskLoader extends AsyncTaskLoader {
 
         // Take ArrayList from JsonParse method
         List<News> listWithNews = JsonParse.extractNews(jsonResponse);
+        // return ArrayList to MainActivity onLoadFinished method
         return listWithNews;
     }
 

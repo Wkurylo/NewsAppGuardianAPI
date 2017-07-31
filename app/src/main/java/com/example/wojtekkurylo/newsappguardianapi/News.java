@@ -11,22 +11,22 @@ public final class News {
     /**
      * section name of news
      */
-    private String mSection;
+    private final String mSection;
 
     /**
      * title of news
      */
-    private String mTitle;
+    private final String mTitle;
 
     /**
      * date of earthquake in miliseconds
      */
-    private String mDate;
+    private final String mDate;
 
     /**
      * link to news details webpage
      */
-    private String mLinkUrl;
+    private final String mLinkUrl;
 
     /**
      * Public constructor com.example.wojtekkurylo.quakereport.Earthquake
