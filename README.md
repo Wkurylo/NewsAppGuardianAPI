@@ -1,5 +1,7 @@
 # NewsAppGuardianAPI
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/620f9935fa5e440fa46206728a9a9051)](https://www.codacy.com/app/Wkurylo/NewsAppGuardianAPI?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Wkurylo/NewsAppGuardianAPI&amp;utm_campaign=Badge_Grade)
+
 An Android app that alows the user to read the news and customize the search.
 An app is using Guardian News API.
 ## Features:
